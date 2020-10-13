@@ -1,0 +1,9 @@
+.container {
+  max-width: 100%;
+  padding: 0 80px;
+}
+
+.tableError {
+  font-size: 18px;
+  text-align: center;
+}

@@ -1,10 +1,17 @@
 {
-  "name": "react-text-application",
+  "name": "test",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+  "main": "packages/app/index.js",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^3.22.1",
+    "npm-run-all": "^4.1.5"
+  },
+  "scripts": {
+    "start": "yarn workspace test-app start",
+    "server": "yarn workspace graphql-mock start"
   }
 }

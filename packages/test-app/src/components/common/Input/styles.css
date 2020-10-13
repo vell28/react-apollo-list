@@ -1,0 +1,9 @@
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.inputError {
+  border: 1px solid red;
+}

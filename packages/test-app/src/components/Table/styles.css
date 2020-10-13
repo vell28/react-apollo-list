@@ -1,0 +1,22 @@
+.tableContainer {
+  padding: 40px;
+  position: relative;
+  z-index: 2;
+  border: 1px solid black;
+}
+
+.tableWrapper {
+  width: 900px;
+  max-width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.tableContainer.disable {
+  background: #ddd;
+  pointer-events: none;
+}

@@ -1,0 +1,26 @@
+.titleWrapper {
+  position: sticky; 
+  top: -1px;
+  background: #ddd;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.title {
+  text-transform: capitalize;
+  position: relative;
+}
+
+.title::after {
+  content: '-';
+  position: absolute;
+  right: -12px;
+}
+
+.asc::after {
+  content: '\2193';
+}
+
+.desc::after {
+  content: '\2191';
+}

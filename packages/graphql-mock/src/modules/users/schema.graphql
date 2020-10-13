@@ -1,0 +1,29 @@
+type User {
+  id: ID!
+  name: String
+  surname: String
+  age: Int
+  email: String
+}
+
+type Users {
+  usersList: [User]
+  total: Int
+}
+
+type UpdatedUser {
+  id: ID!
+  name: String!
+  surname: String!
+  age: String!
+  email: String!
+}
+
+type Query {
+  users(field: String, order: String, offset: Int, limit: Int): Users
+}
+
+type Mutation {
+  deleteUser(id: ID!): Boolean
+  updatedUser(id: ID!, name: String!, surname: String!, age: String!, email: String!): UpdatedUser
+}

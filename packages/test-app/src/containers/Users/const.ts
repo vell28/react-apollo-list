@@ -1,0 +1,1 @@
+export const ERROR_TEXT: string = 'Something went wrong. Please reload page'

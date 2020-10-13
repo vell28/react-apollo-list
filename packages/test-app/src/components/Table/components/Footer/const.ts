@@ -1,0 +1,1 @@
+export const LOAD_MORE: string = 'load more';
