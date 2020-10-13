@@ -26,14 +26,22 @@ export const Table = ({ data, onFetchMore, loading }: Props) => {
   const isLastPage: boolean = Math.ceil(data?.users?.usersList.length / NUMBER_OF_PAGE) 
     < Math.ceil(data?.users?.total / NUMBER_OF_PAGE);
 
-  const handleLoadMore = (): void => {
-    setLoadMoreLoading(true);
-    const offset = pagesParams.limit;
-    const limit = pagesParams.limit + NUMBER_OF_PAGE;
+  const clearCooldown = () => setTimeout(() => {
+    isCooldown = false;
+  }, DELAY)
 
-    onFetchMore({ ...sort, offset, limit });
-    setPagesParams({ offset, limit })
-    setLoadMoreLoading(false);
+  const handleLoadMore = (): void => {
+    if (!isCooldown) {
+      isCooldown = true;
+      setLoadMoreLoading(true);
+      const offset = pagesParams.limit;
+      const limit = pagesParams.limit + NUMBER_OF_PAGE;
+
+      onFetchMore({ ...sort, offset, limit });
+      setPagesParams({ offset, limit })
+      setLoadMoreLoading(false);
+      clearCooldown();
+    }
   }
 
   const handleSort =  (name: string): void => {
@@ -65,9 +73,7 @@ export const Table = ({ data, onFetchMore, loading }: Props) => {
         setPagesParams(PAGES_PARAMS);
       }
 
-      setTimeout(() => {
-        isCooldown = false;
-      }, DELAY)
+      clearCooldown();
     }
   }
 

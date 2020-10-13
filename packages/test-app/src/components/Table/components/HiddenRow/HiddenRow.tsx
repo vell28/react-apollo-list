@@ -23,7 +23,7 @@ export const HiddenRow: React.FC<Props> = (props) => {
 
   const rootRef = useRef<HTMLTableRowElement>(null);
 
-  const [handleUserUpdate, { loading, error }] = useMutation(UPDATE_USER, {
+  const [mutate, { loading, error }] = useMutation(UPDATE_USER, {
     variables: { id, ...fieldsValue },
     update: (store, { data }) => {
       let storeUsers: { users: {usersList: IUser[], total: number} } | null = 
@@ -44,6 +44,9 @@ export const HiddenRow: React.FC<Props> = (props) => {
       }
     }
   });
+
+  const handleUserUpdate = async () => 
+    await mutate().catch((e) => { console.error(e); });
 
   useOnClickOutside(rootRef, () => {
     onClick();
@@ -71,13 +74,13 @@ export const HiddenRow: React.FC<Props> = (props) => {
         </Cell>
       )}
       <Cell>
-        <Button 
+        <Button
           disabled={isError || isFieldsEqual(fieldsValue, { name, surname, age: age.toString(), email })} 
           text={SAVE} 
           loading={loading} 
           onClick={handleUserUpdate} 
         />
-        {error && <span>{ERROR_TEXT}</span>}
+        {error && <span className='error'>{ERROR_TEXT}</span>}
       </Cell> 
     </tr>
   )

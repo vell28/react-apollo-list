@@ -20,7 +20,7 @@ export const Row: React.FC<Props> = memo((props) => {
   const [isEdit, setEdit] = useState<boolean>(false);
   const { id, name, surname, age, email, setTableDisabled } = props;
 
-  const [handleUserDelete, { loading, error }] = useMutation(DELETE_USER, {
+  const [mutate, { loading, error }] = useMutation(DELETE_USER, {
     variables: { id },
     update: (store, { data }) => {
       if (data.deleteUser) {
@@ -49,6 +49,9 @@ export const Row: React.FC<Props> = memo((props) => {
     setEdit(!isEdit);
     setTableDisabled(!isEdit);
   }, [isEdit, setTableDisabled])
+
+  const handleUserDelete = async () => 
+    await mutate().catch((e) => { console.error(e); });
 
   return (
     <>
